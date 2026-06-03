@@ -35,7 +35,7 @@
             overflow-x: hidden;
         }
 
-        /* SECCIONES ESTÁNDAR: Adaptables al contenido */
+        /* SECCIONES ESTÁNDAR: Adaptables al contenido para evitar huecos gigantes */
         section {
             width: 100%;
             padding: 4rem 1.5rem;
@@ -48,7 +48,7 @@
             justify-content: center;
         }
 
-        /* PORTADA: Mantiene pantalla completa de impacto */
+        /* PORTADA DE IMPACTO: Mantiene pantalla completa */
         header.envelope-cover {
             width: 100%;
             min-height: 100vh;
@@ -135,6 +135,7 @@
             text-transform: uppercase;
         }
 
+        /* ANIMACIÓN DE LATIDO SMOOTH */
         @keyframes pulseSmooth {
             0% { transform: scale(1); }
             35% { transform: scale(1.04); }
@@ -155,21 +156,45 @@
             animation: pulseSmooth 2.5s infinite ease-in-out;
         }
 
-        /* IMÁGENES FLUIDAS */
+        /* IMÁGENES FLUIDAS CON FILTROS ELEGANTES */
         .img-container {
             width: 100%;
             max-width: 500px;
             margin: 2rem 0;
-            border-radius: 4px;
+            border-radius: 24px; /* Esquinas más curvas y románticas */
             overflow: hidden;
-            box-shadow: 0 12px 25px rgba(29, 42, 68, 0.1);
-            border: 1px solid var(--gold-light);
+            box-shadow: 0 15px 35px rgba(29, 42, 68, 0.12);
+            border: 2px solid var(--gold-light);
+            background-color: var(--white);
+            z-index: 2;
         }
 
+        /* Filtro de calidez cinematográfica para Adri&Cesar.jpeg */
         .img-container img {
             width: 100%;
             height: auto;
             display: block;
+            filter: sepia(0.15) contrast(1.05) brightness(1.02);
+        }
+
+        /* Contenedor específico y filtro artístico para la foto civil Adri&Cesar2.jpeg */
+        .civil-img-container {
+            width: 100%;
+            max-width: 450px;
+            margin: 2.5rem 0;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            z-index: 2;
+        }
+
+        .civil-img-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: grayscale(0.2) sepia(0.2) contrast(1.1);
+            opacity: 0.95;
         }
 
         /* REPRODUCTOR DE SPOTIFY */
@@ -458,7 +483,7 @@
             font-weight: 400;
         }
 
-        /* SUGERENCIA DE REGALOS */
+        /* SUGERENCIA DE REGALOS DISTRIBUIDA */
         .gifts-grid-wrapper {
             display: flex;
             flex-wrap: wrap;
@@ -512,6 +537,13 @@
             line-height: 1.8;
             color: #444;
             margin: 1rem 0;
+        }
+
+        .divider {
+            height: 1px;
+            background-color: var(--gold);
+            width: 60px;
+            margin: 1.5rem auto;
         }
 
         /* RSVP */
@@ -570,7 +602,7 @@
             z-index: 2;
         }
 
-        /* SECCIÓN 8: CIERRE RELIGIOSO (Corregido y con min-height de impacto) */
+        /* SECCIÓN 8: CIERRE RELIGIOSO (Pantalla Completa de Impacto) */
         .wedding-footer-verse {
             width: 100%;
             min-height: 100vh;
@@ -603,10 +635,10 @@
             font-weight: 500;
         }
 
-        /* FOOTER FINAL DE CRÉDITOS: Reparado e independiente */
+        /* FOOTER FINAL DE CRÉDITOS INDEPENDIENTE Y REPARADO */
         footer.main-brand-footer {
             width: 100%;
-            min-height: auto; /* Se quita el conflicto de herencia */
+            min-height: auto;
             background-color: #151F33;
             color: rgba(255, 255, 255, 0.7);
             padding: 4rem 1.5rem;
@@ -654,7 +686,7 @@
 </head>
 <body>
 
-    <!-- VECTOR SVG MAXI -->
+    <!-- VECTOR SVG MAXI DE CORTE ORGANICO -->
     <svg style="display: none;">
         <g id="svg-leaves-maxi">
             <path d="M10,120 Q50,70 120,10 M120,10 Q70,50 10,120" fill="var(--gold)" opacity="0.25"/>
@@ -684,6 +716,7 @@
         <h2 class="section-title">¡NOS CASAMOS!</h2>
         <p class="story-text" style="margin-top: 0; margin-bottom: 1rem; font-style: italic; color: var(--terracotta);">No lo creían, pero nuestro día llegó.</p>
         
+        <!-- FOTO 1: INTEGRADA DESDE REPOSITORIO GITHUB CON FILTRO CÁLIDO -->
         <div class="img-container">
             <img src="https://github.com/miguelpouse/adi-cesar26/blob/main/Adri&Cesar.jpeg?raw=true" alt="Adriana y César">
         </div>
@@ -707,7 +740,7 @@
         </div>
     </section>
 
-    <!-- SECCIÓN 3: CONTADOR -->
+    <!-- SECCIÓN 3: CONTADOR COMPACTO -->
     <section class="countdown-banner">
         <h3>FALTAN</h3>
         <div class="timer-grid">
@@ -718,7 +751,7 @@
         </div>
     </section>
 
-    <!-- SECCIÓN 4: LOGÍSTICA / UBICACIONES -->
+    <!-- SECCIÓN 4: LOGÍSTICA / UBICACIONES EN XOCHIMILCO -->
     <section>
         <svg class="leaf-decor leaf-bottom-left" viewBox="0 0 120 120"><use href="#svg-leaves-maxi"/></svg>
         <svg class="leaf-decor leaf-side-right" viewBox="0 0 120 120"><use href="#svg-leaves-maxi"/></svg>
@@ -878,13 +911,14 @@
         <h2 class="thanks-title">¡Muchas Gracias!</h2>
     </section>
 
-    <!-- SECCIÓN 8: CIERRE RELIGIOSO (Independiente y fluida) -->
+    <!-- SECCIÓN 8: CIERRE RELIGIOSO -->
     <section class="wedding-footer-verse">
         <p class="bible-text">"El amor nunca se da por vencido, jamás pierde la fe, siempre tiene esperanzas y se mantiene firme en toda circunstancia."</p>
         <p class="bible-reference">1 Corintios 13:7</p>
         
-        <div class="img-container">
-            <img src="https://github.com/miguelpouse/adi-cesar26/blob/main/Adri&Cesar2.jpeg?raw=true" alt="Boda">
+        <!-- FOTO 2: INTEGRADA DESDE REPOSITORIO GITHUB CON FILTRO ARTÍSTICO VINTAGE -->
+        <div class="civil-img-container">
+            <img src="https://github.com/miguelpouse/adi-cesar26/blob/main/Adri&Cesar2.jpeg?raw=true" alt="Boda Civil Adriana y César">
         </div>
     </section>
 
