@@ -93,6 +93,15 @@
             color: var(--white);
         }
 
+        /* ANIMACIÓN DE LATIDO SMOOTH PARA TIPOGRAFÍAS DE GALA */
+        @keyframes pulseSmooth {
+            0% { transform: scale(1); }
+            35% { transform: scale(1.04); }
+            70% { transform: scale(1); }
+            100% { transform: scale(1); }
+        }
+
+        /* Se aplica el latido directamente a los nombres de la portada principal */
         .couple-names {
             font-family: 'Alex Brush', cursive;
             font-size: clamp(3.8rem, 12vw, 7rem);
@@ -102,6 +111,8 @@
             color: var(--gold-light);
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
             z-index: 2;
+            display: inline-block;
+            animation: pulseSmooth 2.8s infinite ease-in-out;
         }
 
         .couple-names .ampersand {
@@ -135,14 +146,6 @@
             text-transform: uppercase;
         }
 
-        /* ANIMACIÓN DE LATIDO SMOOTH */
-        @keyframes pulseSmooth {
-            0% { transform: scale(1); }
-            35% { transform: scale(1.04); }
-            70% { transform: scale(1); }
-            100% { transform: scale(1); }
-        }
-
         .monogram {
             font-family: 'Alex Brush', cursive;
             font-size: clamp(2.8rem, 6vw, 3.8rem);
@@ -161,7 +164,7 @@
             width: 100%;
             max-width: 500px;
             margin: 2rem 0;
-            border-radius: 24px; /* Esquinas más curvas y románticas */
+            border-radius: 24px;
             overflow: hidden;
             box-shadow: 0 15px 35px rgba(29, 42, 68, 0.12);
             border: 2px solid var(--gold-light);
@@ -697,7 +700,7 @@
         </g>
     </svg>
 
-    <!-- SECCIÓN 1: PORTADA -->
+    <!-- SECCIÓN 1: PORTADA (Con animación de latido integrada) -->
     <header class="envelope-cover">
         <svg class="leaf-decor leaf-top-right" viewBox="0 0 120 120"><use href="#svg-leaves-maxi"/></svg>
         <svg class="leaf-decor leaf-bottom-left" viewBox="0 0 120 120"><use href="#svg-leaves-maxi"/></svg>
@@ -850,6 +853,7 @@
                     <p class="gift-card-title">Mesa de Regalos</p>
                     <div class="divider"></div>
                     <div class="liverpool-box">
+                        <!-- ERROR DE TEXTO RESUELTO AQUÍ -->
                         <svg width="110" height="32" viewBox="0 0 120 35" fill="none">
                             <path d="M5,5 C15,10 20,2 35,15 C25,25 10,20 5,5 Z" fill="var(--navy-blue)" opacity="0.15"/>
                             <text x="0" y="25" font-family="'Montserrat', sans-serif" font-weight="500" font-size="16" fill="var(--navy-blue)" letter-spacing="1">Liverpool</text>
@@ -922,7 +926,7 @@
         </div>
     </section>
 
-    <!-- FOOTER FINAL CRÉDITOS (Reparado) -->
+    <!-- FOOTER FINAL CRÉDITOS -->
     <footer class="main-brand-footer">
         <svg class="leaf-decor leaf-bottom-left" style="width:110px; opacity:0.25;" viewBox="0 0 120 120"><use href="#svg-leaves-maxi"/></svg>
         <div class="footer-brand-title">Adriana & César</div>
