@@ -7,10 +7,12 @@
     <!-- Fuentes elegantes de Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        /* Paleta de colores: Terracota, Azul Marino, Dorado y Fondos Crema */
+        /* Paleta de colores ajustada sutilmente para armonizar con el ramo floral */
         :root {
             --terracotta: #C46D51;
             --terracotta-dark: #A35238;
+            --rose-accent: #E5A99E;
+            --rose-light: #F4D3CD;
             --navy-blue: #1D2A44;
             --gold: #D4AF37;
             --gold-light: #F3E5AB;
@@ -18,8 +20,11 @@
             --white: #ffffff;
             --text-main: #333333;
             --text-muted: #5C6B83;
+            --sage-green: #8FA48B;
+            --sage-dark: #556B52;
         }
 
+        /* RESET STRICTO PARA ELIMINAR SCROLLS FANTASMAS */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -27,73 +32,83 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        body {
-            font-family: 'Montserrat', sans-serif;
+        html, body {
             background-color: var(--cream-bg);
-            color: var(--text-main);
             width: 100%;
+            margin: 0;
+            padding: 0;
             overflow-x: hidden;
         }
 
-        /* SECCIONES ESTÁNDAR: Adaptables al contenido para evitar huecos gigantes */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-main);
+            position: relative;
+            text-align: center; /* Fuerza el centrado heredado por defecto */
+        }
+
+        /* SECCIONES EN BLOQUE PURO TOTALMENTE CENTRADAS */
         section {
+            display: block;
             width: 100%;
-            padding: 4rem 1.5rem;
+            padding: 5rem 1.5rem;
             text-align: center;
             position: relative;
             background-color: var(--cream-bg);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
         }
 
-        /* PORTADA DE IMPACTO: Mantiene pantalla completa */
+        /* PORTADA CORREGIDA: ALINEACIÓN CENTRAL Y ESPACIADO EQUILIBRADO */
         header.envelope-cover {
+            display: block;
             width: 100%;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 3rem 1.5rem;
-            text-align: center;
             position: relative;
+            background-color: var(--terracotta);
+            color: var(--white);
+            text-align: center;
+            padding: 12rem 1.5rem; 
         }
 
-        /* DECORACIÓN DE HOJAS SVG MAXI */
-        .leaf-decor {
+        .cover-content {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            text-align: center;
+        }
+
+        /* CONTENEDORES PARA EL RAMO FLORAL DE LA IMAGEN */
+        .flower-decor {
             position: absolute;
-            width: clamp(160px, 25vw, 280px);
+            width: clamp(180px, 28vw, 320px);
             height: auto;
-            opacity: 0.85;
             pointer-events: none;
             z-index: 1;
         }
 
-        .leaf-top-right { top: -20px; right: -20px; }
-        .leaf-bottom-left { bottom: -20px; left: -20px; transform: scaleY(-1) scaleX(-1); }
+        .flower-top-right { 
+            top: -30px; 
+            right: -30px; 
+            transform: rotate(-10deg);
+        }
+        .flower-bottom-left { 
+            bottom: -30px; 
+            left: -30px; 
+            transform: scaleX(-1) scaleY(-1) rotate(-10deg); 
+        }
         
-        .leaf-side-left {
-            top: 35%;
-            left: -40px;
-            width: clamp(120px, 18vw, 200px);
-            transform: rotate(45deg);
+        .flower-side-left {
+            top: 40%;
+            left: -65px;
+            width: clamp(140px, 20vw, 220px);
+            transform: rotate(65deg);
         }
-        .leaf-side-right {
-            top: 25%;
-            right: -40px;
-            width: clamp(120px, 18vw, 200px);
-            transform: rotate(-135deg);
-        }
-
-        /* SECCIÓN 1: PORTADA */
-        .envelope-cover {
-            background-color: var(--terracotta);
-            color: var(--white);
+        .flower-side-right {
+            top: 30%;
+            right: -65px;
+            width: clamp(140px, 20vw, 220px);
+            transform: scaleX(-1) rotate(65deg);
         }
 
-        /* ANIMACIÓN DE LATIDO SMOOTH PARA TIPOGRAFÍAS DE GALA */
+        /* ANIMACIÓN DE LATIDO SMOOTH */
         @keyframes pulseSmooth {
             0% { transform: scale(1); }
             35% { transform: scale(1.04); }
@@ -101,7 +116,6 @@
             100% { transform: scale(1); }
         }
 
-        /* Se aplica el latido directamente a los nombres de la portada principal */
         .couple-names {
             font-family: 'Alex Brush', cursive;
             font-size: clamp(3.8rem, 12vw, 7rem);
@@ -124,26 +138,29 @@
             color: var(--white);
         }
 
+        /* CORRECCIÓN: SE FORZA A BLOQUE SEGURO CON MARGENES AUTOMÁTICOS PARA QUEDAR RECTO AL CENTRO */
         .date-badge {
-            margin-top: 4rem;
+            margin: 4rem auto 0 auto;
             font-size: clamp(1rem, 2vw, 1.3rem);
             letter-spacing: 6px;
             font-weight: 300;
             border-top: 1px solid rgba(255,255,255,0.4);
-            display: inline-block;
+            display: block; /* Cambiado de inline-block a block para romper filas */
             padding-top: 1rem;
             color: var(--white);
             z-index: 2;
+            text-align: center;
+            max-width: 240px; /* Delimita la línea superior decorativa de la fecha */
         }
 
-        /* TEXTOS Y COMPONENTES */
         .section-title {
             font-size: clamp(1.2rem, 3vw, 2rem);
             font-weight: 500;
             letter-spacing: 5px;
             color: var(--navy-blue);
-            margin-bottom: 1rem;
+            margin: 0 auto 1rem auto;
             text-transform: uppercase;
+            text-align: center;
         }
 
         .monogram {
@@ -152,39 +169,124 @@
             font-weight: 400;
             letter-spacing: 2px;
             color: var(--terracotta);
-            margin-bottom: 1.5rem;
+            margin: 0 auto 1.5rem auto;
             border-bottom: 1px solid rgba(29, 42, 68, 0.1);
             display: inline-block;
             padding-bottom: 0.2rem;
             animation: pulseSmooth 2.5s infinite ease-in-out;
         }
 
-        /* IMÁGENES FLUIDAS CON FILTROS ELEGANTES */
-        .img-container {
+        /* CARRUSEL DE FOTOS - TOTALMENTE CENTRADO */
+        .carousel-wrapper {
             width: 100%;
-            max-width: 500px;
-            margin: 2rem 0;
-            border-radius: 24px;
+            max-width: 480px;
+            margin: 2.5rem auto;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .carousel-container {
+            width: 100%;
+            border-radius: 30px;
             overflow: hidden;
-            box-shadow: 0 15px 35px rgba(29, 42, 68, 0.12);
+            box-shadow: 0 15px 40px rgba(29, 42, 68, 0.12);
             border: 2px solid var(--gold-light);
             background-color: var(--white);
+            position: relative;
+            aspect-ratio: 4 / 5;
+            margin: 0 auto;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out;
+            z-index: 1;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
             z-index: 2;
         }
 
-        /* Filtro de calidez cinematográfica para Adri&Cesar.jpeg */
-        .img-container img {
+        .carousel-slide img {
             width: 100%;
-            height: auto;
+            height: 100%;
+            object-fit: cover;
             display: block;
-            filter: sepia(0.25) contrast(1.05) brightness(1.02);
+            filter: sepia(0.2) contrast(1.03) brightness(1.02);
         }
 
-        /* Contenedor específico y filtro artístico para la foto civil Adri&Cesar2.jpeg */
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 1.2rem;
+        }
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: rgba(29, 42, 68, 0.2);
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+        .dot.active {
+            background-color: var(--terracotta);
+            transform: scale(1.3);
+        }
+
+        /* SECCIÓN PADRINOS PERFECTAMENTE CENTRADA */
+        .padrinos-container {
+            width: 100%;
+            max-width: 650px;
+            margin: 2rem auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .padrinos-group {
+            background: rgba(255, 255, 255, 0.6);
+            padding: 1.8rem 1.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(196, 109, 81, 0.12);
+            box-shadow: 0 10px 25px rgba(29, 42, 68, 0.02);
+            margin: 0 auto;
+            width: 100%;
+            max-width: 300px;
+            text-align: center;
+        }
+
+        .padrinos-type {
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: var(--terracotta);
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+            text-align: center;
+        }
+
+        .padrinos-names {
+            font-size: 1.05rem;
+            color: var(--navy-blue);
+            line-height: 1.6;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        /* CIVIL IMAGE CONTAINER */
         .civil-img-container {
             width: 100%;
             max-width: 450px;
-            margin: 2.5rem 0;
+            margin: 2.5rem auto;
             border-radius: 16px;
             overflow: hidden;
             border: 1px solid rgba(212, 175, 55, 0.3);
@@ -204,14 +306,15 @@
         .spotify-container {
             width: 100%;
             max-width: 450px;
-            margin: 2rem 0;
+            margin: 2rem auto;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 8px 20px rgba(29, 42, 68, 0.08);
+            box-shadow: 0 8px 20px rgba(29, 42, 68, 0.088);
             border: 1px solid rgba(196, 109, 81, 0.2);
             background-color: var(--white);
             padding: 0.5rem;
             z-index: 2;
+            text-align: center;
         }
 
         .spotify-title {
@@ -221,6 +324,7 @@
             letter-spacing: 2px;
             text-transform: uppercase;
             font-weight: 600;
+            text-align: center;
         }
 
         .story-text {
@@ -230,23 +334,26 @@
             max-width: 600px;
             margin: 2rem auto 0 auto;
             z-index: 2;
+            text-align: center;
         }
 
         /* CALENDARIO */
         .calendar-display {
             width: 100%;
             max-width: 450px;
-            margin-top: 3rem;
+            margin: 3rem auto 0 auto;
             border-top: 1px solid rgba(29, 42, 68, 0.1);
             border-bottom: 1px solid rgba(29, 42, 68, 0.1);
             padding: 1.5rem 0;
             z-index: 2;
+            text-align: center;
         }
 
         .cal-line {
             font-size: 0.9rem;
             letter-spacing: 4px;
             color: var(--text-muted);
+            text-align: center;
         }
 
         .cal-row {
@@ -261,6 +368,7 @@
             letter-spacing: 3px;
             color: var(--navy-blue);
             width: 30%;
+            text-align: center;
         }
 
         .cal-day {
@@ -268,13 +376,16 @@
             font-weight: 300;
             color: var(--terracotta);
             width: 40%;
+            text-align: center;
         }
 
-        /* SECCIÓN CONTADOR COMPACTO */
+        /* CONTADOR */
         .countdown-banner {
             background-color: var(--navy-blue);
             color: var(--white);
             padding: 3rem 1.5rem;
+            display: block;
+            text-align: center;
         }
 
         .countdown-banner h3 {
@@ -283,6 +394,7 @@
             margin-bottom: 2rem;
             font-weight: 400;
             color: var(--gold);
+            text-align: center;
         }
 
         .timer-grid {
@@ -298,6 +410,7 @@
             font-weight: 300;
             display: block;
             color: var(--white);
+            text-align: center;
         }
 
         .timer-block p {
@@ -306,9 +419,10 @@
             color: var(--gold-light);
             margin-top: 0.5rem;
             text-transform: uppercase;
+            text-align: center;
         }
 
-        /* BOTONES */
+        /* BOTONES CENTRADOS */
         .btn-action {
             display: inline-block;
             padding: 1rem 2.5rem;
@@ -320,12 +434,13 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             border-radius: 30px;
-            margin-top: 1.5rem;
+            margin: 1.5rem auto 0 auto;
             transition: all 0.3s ease;
             font-weight: 600;
             width: 100%;
             max-width: 280px;
             z-index: 2;
+            text-align: center;
         }
 
         .btn-action:hover {
@@ -333,28 +448,32 @@
             color: var(--white);
         }
 
-        /* UBICACIONES */
+        /* CONTENEDOR DE TARJETAS DE UBICACIÓN CENTRADO */
         .events-wrap {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
+            align-items: center;
             gap: 4rem;
             width: 100%;
             max-width: 900px;
-            margin-top: 2rem;
-            z-index: 2;
+            margin: 2rem auto 0 auto;
+            text-align: center;
         }
 
         .event-card {
             flex: 1;
             min-width: 280px;
             max-width: 400px;
+            margin: 0 auto;
+            text-align: center;
         }
 
         .svg-icon {
             width: 55px;
             height: 55px;
-            margin-bottom: 1.2rem;
+            margin: 0 auto 1.2rem auto;
+            display: block;
         }
 
         .time-tag {
@@ -364,6 +483,7 @@
             margin-bottom: 0.5rem;
             letter-spacing: 2px;
             font-weight: 500;
+            text-align: center;
         }
 
         .place-name {
@@ -372,21 +492,24 @@
             letter-spacing: 1px;
             margin-top: 0.5rem;
             color: var(--navy-blue);
+            text-align: center;
         }
 
         .location-sub {
             font-size: 0.9rem;
             color: #555;
             margin-bottom: 1rem;
+            text-align: center;
         }
 
-        /* ITINERARIO */
+        /* ITINERARIO CENTRADO */
         .itinerary-box {
             width: 100%;
             margin-top: 4rem;
             border-top: 1px dashed rgba(29, 42, 68, 0.15);
             padding-top: 4rem;
             z-index: 2;
+            text-align: center;
         }
 
         .itinerary-title {
@@ -394,15 +517,16 @@
             letter-spacing: 4px;
             margin-bottom: 3rem;
             color: var(--navy-blue);
+            text-align: center;
         }
 
         .timeline {
             position: relative;
-            max-width: 320px;
+            max-width: 290px;
             margin: 0 auto;
             border-left: 1px solid var(--terracotta);
-            padding-left: 2rem;
-            text-align: left;
+            padding-left: 2.5rem;
+            text-align: left; 
         }
 
         .timeline-item {
@@ -413,7 +537,7 @@
         .timeline-item::before {
             content: '';
             position: absolute;
-            left: calc(-2rem - 5px);
+            left: calc(-2.5rem - 5px);
             top: 4px;
             background-color: var(--gold);
             width: 10px;
@@ -435,12 +559,14 @@
             letter-spacing: 0.5px;
         }
 
-        /* DRESS CODE */
+        /* DRESS CODE Y PALETA DE COLORES */
         .dress-code-section {
             background-color: var(--white);
             border-top: 1px solid rgba(29, 42, 68, 0.05);
             border-bottom: 1px solid rgba(29, 42, 68, 0.05);
             padding: 4rem 1.5rem;
+            display: block;
+            text-align: center;
         }
 
         .dress-card-frame {
@@ -453,6 +579,7 @@
             background-color: var(--cream-bg);
             box-shadow: 0 10px 30px rgba(29, 42, 68, 0.03);
             z-index: 2;
+            text-align: center;
         }
 
         .dress-type {
@@ -462,6 +589,7 @@
             margin: 1rem 0;
             letter-spacing: 4px;
             text-transform: uppercase;
+            text-align: center;
         }
 
         .dress-visual-container {
@@ -469,12 +597,37 @@
             justify-content: center;
             align-items: center;
             gap: 2.5rem;
-            margin: 2rem 0;
+            margin: 2rem 0 1.5rem 0;
         }
 
         .dress-svg-graphic {
             width: 50px;
             height: 65px;
+        }
+
+        .color-palette-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            margin: 1.5rem 0 0.8rem 0;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .palette-swatches {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .swatch {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+            border: 2px solid var(--white);
         }
 
         .dress-instruction {
@@ -484,18 +637,20 @@
             max-width: 340px;
             margin: 0 auto;
             font-weight: 400;
+            text-align: center;
         }
 
-        /* SUGERENCIA DE REGALOS DISTRIBUIDA */
+        /* SUGERENCIA DE REGALOS CENTRADOS */
         .gifts-grid-wrapper {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
+            align-items: center;
             gap: 2.5rem;
             width: 100%;
             max-width: 850px;
-            margin-top: 2.5rem;
-            z-index: 2;
+            margin: 2.5rem auto 0 auto;
+            text-align: center;
         }
 
         .gift-option-card {
@@ -511,6 +666,8 @@
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
+            margin: 0 auto;
+            text-align: center;
         }
 
         .gift-card-title {
@@ -520,6 +677,7 @@
             color: var(--navy-blue);
             text-transform: uppercase;
             margin-bottom: 0.5rem;
+            text-align: center;
         }
 
         .liverpool-box {
@@ -533,6 +691,7 @@
             color: var(--terracotta);
             letter-spacing: 1px;
             margin-top: 0.5rem;
+            text-align: center;
         }
 
         .bank-details {
@@ -540,6 +699,7 @@
             line-height: 1.8;
             color: #444;
             margin: 1rem 0;
+            text-align: center;
         }
 
         .divider {
@@ -549,7 +709,7 @@
             margin: 1.5rem auto;
         }
 
-        /* RSVP */
+        /* RSVP CENTRADO */
         .rsvp-actions {
             display: flex;
             flex-wrap: wrap;
@@ -558,10 +718,11 @@
             width: 100%;
             max-width: 450px;
             margin: 2rem auto 3rem auto;
+            text-align: center;
         }
 
         .rsvp-actions .btn-action {
-            margin-top: 0;
+            margin: 0 auto;
             flex: 1;
             min-width: 180px;
         }
@@ -575,6 +736,7 @@
             max-width: 450px;
             border: 1px solid rgba(196, 109, 81, 0.2);
             z-index: 2;
+            text-align: center;
         }
 
         .no-children-card h3 {
@@ -582,19 +744,24 @@
             letter-spacing: 4px;
             color: var(--terracotta-dark);
             margin-bottom: 1rem;
+            text-align: center;
         }
 
         .no-children-card p {
             font-size: 0.9rem;
             color: #555;
             line-height: 1.6;
+            text-align: center;
         }
 
         .special-note {
             font-size: 0.85rem;
             color: var(--text-muted);
-            margin-bottom: 3rem;
+            margin: 0 auto 3rem auto;
             z-index: 2;
+            text-align: center;
+            width: 100%;
+            max-width: 450px;
         }
 
         .thanks-title {
@@ -603,20 +770,18 @@
             color: var(--terracotta);
             font-weight: 400;
             z-index: 2;
+            text-align: center;
         }
 
-        /* SECCIÓN 8: CIERRE RELIGIOSO (Pantalla Completa de Impacto) */
+        /* FOOTER VERSE CENTRADO */
         .wedding-footer-verse {
             width: 100%;
-            min-height: 100vh;
             background-color: var(--navy-blue);
             color: var(--white);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 5rem 1.5rem;
+            display: block;
+            padding: 6rem 1.5rem;
             position: relative;
+            text-align: center;
         }
 
         .bible-text {
@@ -627,6 +792,7 @@
             max-width: 450px;
             margin: 0 auto;
             opacity: 0.9;
+            text-align: center;
         }
 
         .bible-reference {
@@ -634,94 +800,229 @@
             letter-spacing: 3px;
             text-transform: uppercase;
             color: var(--gold);
-            margin-top: 1rem;
+            margin: 1rem auto 3rem auto;
             font-weight: 500;
+            text-align: center;
         }
 
-        /* FOOTER FINAL DE CRÉDITOS INDEPENDIENTE Y REPARADO */
+        /* FOOTER REESTRUCTURADO Y CENTRADO */
         footer.main-brand-footer {
+            display: block;
             width: 100%;
-            min-height: auto;
-            background-color: #151F33;
-            color: rgba(255, 255, 255, 0.7);
-            padding: 4rem 1.5rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            background-color: var(--terracotta-dark);
+            color: var(--white);
+            padding: 6rem 1.5rem;
             position: relative;
+            border-top: 2px solid var(--gold);
+            margin: 0;
+            text-align: center; 
+        }
+
+        /* Guirnalda floral cruzada de fondo en el footer */
+        .footer-flower-decor {
+            position: absolute;
+            width: clamp(160px, 24vw, 260px);
+            height: auto;
+            pointer-events: none;
+            opacity: 0.28;
+            z-index: 1;
+        }
+        .footer-flower-left {
+            bottom: -10px;
+            left: -20px;
+            transform: rotate(20deg);
+        }
+        .footer-flower-right {
+            top: -25px;
+            right: -20px;
+            transform: scaleX(-1) rotate(15deg);
         }
 
         .footer-brand-title {
             font-family: 'Alex Brush', cursive;
             font-weight: 400;
-            font-size: clamp(2rem, 5vw, 2.8rem);
-            letter-spacing: 2px;
+            font-size: clamp(2.4rem, 6vw, 3.4rem);
+            letter-spacing: 1px;
             color: var(--gold-light);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
             display: inline-block;
+            z-index: 2;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
             animation: pulseSmooth 2.5s infinite ease-in-out;
         }
 
+        .footer-subtitle {
+            color: var(--white);
+            font-size: 0.8rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+            z-index: 2;
+            display: block; 
+        }
+
         .footer-divider {
-            width: 40px;
+            width: 60px;
             height: 1px;
-            background-color: var(--terracotta);
+            background-color: var(--gold);
             margin: 1.5rem auto;
-            opacity: 0.5;
+            opacity: 0.7;
+            z-index: 2;
         }
 
         .footer-credits {
             font-size: 0.7rem;
-            opacity: 0.5;
             text-transform: uppercase;
             letter-spacing: 2px;
+            opacity: 0.8;
+            color: var(--white);
+            z-index: 2;
+            display: block; 
         }
 
         .footer-credits a {
-            color: var(--gold);
+            color: var(--gold-light);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        .footer-credits a:hover {
+            color: var(--white);
         }
     </style>
 </head>
 <body>
 
-    <!-- VECTOR SVG MAXI DE CORTE ORGANICO -->
-    <svg style="display: none;">
-        <g id="svg-leaves-maxi">
-            <path d="M10,120 Q50,70 120,10 M120,10 Q70,50 10,120" fill="var(--gold)" opacity="0.25"/>
-            <path d="M45,75 Q10,45 45,15 Q70,45 45,75" fill="var(--terracotta)" opacity="0.45"/>
-            <path d="M25,100 Q-15,80 5,55 Q35,70 25,100" fill="var(--terracotta)" opacity="0.35"/>
-            <path d="M85,45 Q55,10 90,0 Q115,20 85,45" fill="var(--gold)" opacity="0.4"/>
-            <path d="M60,65 Q35,35 65,20 Q85,40 60,65" fill="var(--navy-blue)" opacity="0.15"/>
-        </g>
-    </svg>
+    <!-- DECLARACIÓN DE VECTORES FLORALES TOTALMENTE OCULTA Y ENCAPSULADA PARA NO AFECTAR EL SCROLL DEL NAVEGADOR -->
+    <div style="display: none !important; visibility: hidden !important; width: 0 !important; height: 0 !important; overflow: hidden !important; position: absolute !important;" aria-hidden="true">
+        <svg>
+            <g id="svg-wedding-bouquet">
+                <!-- 1. Ramas de Eucalipto y Hojas de Fondo -->
+                <path d="M150,150 Q240,80 320,60 Q260,110 150,150 Z" fill="var(--sage-green)" opacity="0.6"/>
+                <path d="M140,160 Q70,240 30,340 Q90,270 140,160 Z" fill="var(--sage-dark)" opacity="0.7"/>
+                <path d="M160,140 Q80,100 40,80 Q100,120 160,140 Z" fill="var(--sage-green)" opacity="0.5"/>
+                
+                <!-- Hojas Pequeñas Extendidas Detalladas -->
+                <path d="M260,80 Q290,65 310,40 Q285,65 260,80 Z" fill="var(--sage-green)"/>
+                <path d="M230,95 Q265,85 285,65 Q255,85 230,95 Z" fill="var(--sage-green)"/>
+                <path d="M70,270 Q50,300 25,320 Q50,295 70,270 Z" fill="var(--sage-dark)"/>
+                <path d="M90,240 Q65,270 45,295 Q70,265 90,240 Z" fill="var(--sage-dark)"/>
 
-    <!-- SECCIÓN 1: PORTADA (Con animación de latido integrada) -->
+                <!-- Ramitas con Bayas Silvestres Amarillas -->
+                <g fill="#F5E3B5">
+                    <circle cx="280" cy="110" r="4"/><circle cx="295" cy="120" r="4"/><circle cx="310" cy="130" r="4"/>
+                    <circle cx="265" cy="135" r="4"/><circle cx="280" cy="150" r="4"/>
+                    <circle cx="115" cy="275" r="4"/><circle cx="100" cy="290" r="4"/><circle cx="85" cy="305" r="4"/>
+                    <circle cx="140" cy="295" r="4"/><circle cx="125" cy="315" r="4"/>
+                </g>
+                <path d="M220,130 L295,120 M220,130 L270,145 M160,210 L95,295 M160,210 L130,305" stroke="var(--sage-dark)" stroke-width="1" opacity="0.5"/>
+
+                <!-- 2. Flores Silvestres Beige/Crema -->
+                <g transform="translate(240, 140) scale(0.9)">
+                    <g fill="#EFE3D3">
+                        <ellipse cx="0" cy="0" rx="35" ry="15" transform="rotate(0)"/><ellipse cx="0" cy="0" rx="35" ry="15" transform="rotate(30)"/>
+                        <ellipse cx="0" cy="0" rx="35" ry="15" transform="rotate(60)"/><ellipse cx="0" cy="0" rx="35" ry="15" transform="rotate(90)"/>
+                    </g>
+                    <circle cx="0" cy="0" r="10" fill="#FFFDF9"/>
+                    <circle cx="0" cy="0" r="6" fill="#EAD8C1"/>
+                </g>
+                <g transform="translate(75, 185) scale(0.8)">
+                    <g fill="#EFE3D3">
+                        <ellipse cx="0" cy="0" rx="35" ry="15" transform="rotate(15)"/><ellipse cx="0" cy="0" rx="35" ry="15" transform="rotate(45)"/>
+                        <ellipse cx="0" cy="0" rx="35" ry="15" transform="rotate(75)"/><ellipse cx="0" cy="0" rx="35" ry="15" transform="rotate(105)"/>
+                    </g>
+                    <circle cx="0" cy="0" r="10" fill="#FFFDF9"/>
+                    <circle cx="0" cy="0" r="6" fill="#EAD8C1"/>
+                </g>
+
+                <!-- 3. Tulipanes y Capullos Rosa Pálido -->
+                <path d="M190,75 C175,60 200,40 215,50 C230,40 240,70 215,85 Z" fill="#FADAD6"/>
+                <path d="M55,230 C45,215 65,200 75,210 C85,200 95,220 80,235 Z" fill="#FADAD6" transform="rotate(-20 65 220)"/>
+
+                <!-- 4. Pequeña Flor Plana Rosa Superior -->
+                <g transform="translate(180, 105) scale(0.75)" fill="#EC9E92">
+                    <circle cx="0" cy="-20" r="14"/><circle cx="17" cy="-10" r="14"/><circle cx="17" cy="10" r="14"/>
+                    <circle cx="0" cy="0" r="10" fill="#FFF1EE"/>
+                </g>
+
+                <!-- 5. Gran Rosa Central (Rosa Claro - Blush Pink) -->
+                <g transform="translate(190, 165)">
+                    <circle cx="0" cy="0" r="48" fill="#F5C3BC"/>
+                    <path d="M-38,-20 C-20,-42 20,-42 38,-20 C20,-30 -20,-30 -38,-20 Z" fill="#EEAE3DA" opacity="0.15"/>
+                    <path d="M-42,10 C-30,-25 30,-25 42,10 C25,-10 -25,-10 -42,10 Z" fill="#E8A399" opacity="0.3"/>
+                    <path d="M-15,-5 A15,12 0 1,1 15,5 A12,10 0 1,1 -10,8 A8,6 0 1,1 5,3" fill="none" stroke="#D1867B" stroke-width="3" stroke-linecap="round"/>
+                    <path d="M-25,-12 C-10,-25 15,-25 25,-10" fill="none" stroke="#D1867B" stroke-width="2.5"/>
+                </g>
+
+                <!-- 6. Segunda Rosa Principal (Terracota Suave / Salmón Oscuro) -->
+                <g transform="translate(130, 220)">
+                    <circle cx="0" cy="0" r="46" fill="#E29285"/>
+                    <path d="M-35,-15 C-15,-35 15,-35 35,-15 C15,-25 -15,-25 -35,-15 Z" fill="#C97365" opacity="0.4"/>
+                    <path d="M-38,12 C-25,-20 25,-20 38,12 C20,-5 -20,-5 -38,12 Z" fill="#C97365" opacity="0.5"/>
+                    <path d="M-12,-4 A12,10 0 1,1 12,4 A10,8 0 1,1 -8,6" fill="none" stroke="#9E4A3D" stroke-width="3" stroke-linecap="round"/>
+                </g>
+
+                <!-- 7. Tercera Rosa Superior Mediana -->
+                <g transform="translate(125, 140) scale(0.9)">
+                    <circle cx="0" cy="0" r="40" fill="#FCEEEB"/>
+                    <path d="M-10,-3 A10,8 0 1,1 10,3 A8,7 0 1,1 -6,5" fill="none" stroke="#E5B5AD" stroke-width="2.5"/>
+                </g>
+            </g>
+        </svg>
+    </div>
+
+    <!-- SECCIÓN 1: PORTADA -->
     <header class="envelope-cover">
-        <svg class="leaf-decor leaf-top-right" viewBox="0 0 120 120"><use href="#svg-leaves-maxi"/></svg>
-        <svg class="leaf-decor leaf-bottom-left" viewBox="0 0 120 120"><use href="#svg-leaves-maxi"/></svg>
+        <svg class="flower-decor flower-top-right" viewBox="0 0 340 360"><use href="#svg-wedding-bouquet"/></svg>
+        <svg class="flower-decor flower-bottom-left" viewBox="0 0 340 360"><use href="#svg-wedding-bouquet"/></svg>
 
-        <h1 class="couple-names">Adriana <br><span class="ampersand">&</span><br> César</h1>
-        <div class="date-badge">14.11.2026</div>
+        <div class="cover-content">
+            <h1 class="couple-names">Adriana <br><span class="ampersand">&</span><br> César</h1>
+            <div class="date-badge">14.11.2026</div>
+        </div>
     </header>
 
-    <!-- SECCIÓN 2: BIENVENIDA -->
+    <!-- SECCIÓN 2: BIENVENIDA & PADRINOS -->
     <section>
-        <svg class="leaf-decor leaf-top-right" viewBox="0 0 120 120"><use href="#svg-leaves-maxi"/></svg>
-        <svg class="leaf-decor leaf-side-left" viewBox="0 0 120 120"><use href="#svg-leaves-maxi"/></svg>
+        <svg class="flower-decor flower-top-right" viewBox="0 0 340 360"><use href="#svg-wedding-bouquet"/></svg>
+        <svg class="flower-decor flower-side-left" viewBox="0 0 340 360"><use href="#svg-wedding-bouquet"/></svg>
 
         <div class="monogram">Adriana & César</div>
         
         <h2 class="section-title">¡NOS CASAMOS!</h2>
         <p class="story-text" style="margin-top: 0; margin-bottom: 1rem; font-style: italic; color: var(--terracotta);">No lo creían, pero nuestro día llegó.</p>
         
-        <!-- FOTO 1: INTEGRADA DESDE REPOSITORIO GITHUB CON FILTRO CÁLIDO -->
-        <div class="img-container">
-            <img src="https://github.com/miguelpouse/adi-cesar26/blob/main/Adri&Cesar.jpeg?raw=true" alt="Adriana y César">
+        <!-- SECCIÓN: PADRINOS DE BODA (CENTRADOS) -->
+        <div class="padrinos-container">
+            <div class="padrinos-group">
+                <p class="padrinos-type">Padrinos de Velación</p>
+                <p class="padrinos-names">Nombres de los Padrinos<br>Nombres de los Padrinos</p>
+            </div>
+            <div class="padrinos-group">
+                <p class="padrinos-type">Padrinos de Anillos</p>
+                <p class="padrinos-names">Nombres de los Padrinos</p>
+            </div>
+        </div>
+
+        <!-- CARRUSEL INFINITO Y AUTOMÁTICO EN FADE -->
+        <div class="carousel-wrapper">
+            <div class="carousel-container">
+                <div class="carousel-slide active">
+                    <img src="https://github.com/miguelpouse/adi-cesar26/blob/main/Adri&Cesar.jpeg?raw=true" alt="Adriana y César Foto 1">
+                </div>
+                <div class="carousel-slide">
+                    <img src="https://github.com/miguelpouse/adi-cesar26/blob/main/Adri&Cesar2.jpeg?raw=true" alt="Adriana y César Foto 2">
+                </div>
+                <div class="carousel-slide">
+                    <img src="https://github.com/miguelpouse/adi-cesar26/blob/main/Adri&Cesar.jpeg?raw=true" alt="Adriana y César Foto 3">
+                </div>
+            </div>
+            <div class="carousel-dots">
+                <span class="dot active" onclick="setSlide(0)"></span>
+                <span class="dot" onclick="setSlide(1)"></span>
+                <span class="dot" onclick="setSlide(2)"></span>
+            </div>
         </div>
 
         <div class="spotify-container">
@@ -754,10 +1055,10 @@
         </div>
     </section>
 
-    <!-- SECCIÓN 4: LOGÍSTICA / UBICACIONES EN XOCHIMILCO -->
+    <!-- SECCIÓN 4: LOGÍSTICA / UBICACIONES (CENTRADAS) -->
     <section>
-        <svg class="leaf-decor leaf-bottom-left" viewBox="0 0 120 120"><use href="#svg-leaves-maxi"/></svg>
-        <svg class="leaf-decor leaf-side-right" viewBox="0 0 120 120"><use href="#svg-leaves-maxi"/></svg>
+        <svg class="flower-decor flower-bottom-left" viewBox="0 0 340 360"><use href="#svg-wedding-bouquet"/></svg>
+        <svg class="flower-decor flower-side-right" viewBox="0 0 340 360"><use href="#svg-wedding-bouquet"/></svg>
         
         <div class="events-wrap">
             <div class="event-card">
@@ -803,8 +1104,8 @@
 
     <!-- SECCIÓN 5: CÓDIGO DE VESTIMENTA -->
     <section class="dress-code-section">
-        <svg class="leaf-decor leaf-top-right" viewBox="0 0 120 120"><use href="#svg-leaves-maxi"/></svg>
-        <svg class="leaf-decor leaf-bottom-left" viewBox="0 0 120 120"><use href="#svg-leaves-maxi"/></svg>
+        <svg class="flower-decor flower-top-right" viewBox="0 0 340 360"><use href="#svg-wedding-bouquet"/></svg>
+        <svg class="flower-decor flower-bottom-left" viewBox="0 0 340 360"><use href="#svg-wedding-bouquet"/></svg>
         
         <div class="dress-card-frame">
             <h3 class="section-title" style="font-size: 1.1rem; color: var(--navy-blue);">Código de Vestimenta</h3>
@@ -829,14 +1130,23 @@
                     <path d="M20,24 L20,54" stroke="var(--navy-blue)" stroke-width="1" opacity="0.15"/>
                 </svg>
             </div>
+
+            <p class="color-palette-title">Colores sugeridos</p>
+            <div class="palette-swatches">
+                <div class="swatch" style="background-color: #C46D51;" title="Terracota"></div>
+                <div class="swatch" style="background-color: #E5A99E;" title="Rosa Blush"></div>
+                <div class="swatch" style="background-color: #EAD8C1;" title="Crema Nude"></div>
+                <div class="swatch" style="background-color: #8FA48B;" title="Verde Sabio"></div>
+                <div class="swatch" style="background-color: #1D2A44;" title="Azul Marino"></div>
+            </div>
             
             <p class="dress-instruction">Con mucho cariño, les pedimos evitar prendas en color blanco y tonos similares.</p>
         </div>
     </section>
 
-    <!-- SECCIÓN 6: SUGERENCIA DE REGALOS -->
+    <!-- SECCIÓN 6: SUGERENCIA DE REGALOS (CENTRADOS) -->
     <section>
-        <svg class="leaf-decor leaf-top-right" viewBox="0 0 120 120"><use href="#svg-leaves-maxi"/></svg>
+        <svg class="flower-decor flower-top-right" viewBox="0 0 340 360"><use href="#svg-wedding-bouquet"/></svg>
         
         <svg class="svg-icon" viewBox="0 0 64 64" fill="none" stroke="var(--navy-blue)" stroke-width="2">
             <rect x="10" y="20" width="44" height="34" rx="4"/>
@@ -845,7 +1155,7 @@
             <circle cx="32" cy="27" r="3" fill="var(--gold)"/>
         </svg>
         <h3 class="section-title">Sugerencia de Regalos</h3>
-        <p class="story-text" style="margin-top:0;">El mejor regalo es tu presencia, pero si deseas tener un detalle con nosotros, les dejamos estas opciones:</p>
+        <p class="story-text" style="margin-top:0;">El mejor regalo es tu presence, pero si deseas tener un detalle con nosotros, les dejamos estas opciones:</p>
         
         <div class="gifts-grid-wrapper">
             <div class="gift-option-card">
@@ -853,8 +1163,7 @@
                     <p class="gift-card-title">Mesa de Regalos</p>
                     <div class="divider"></div>
                     <div class="liverpool-box">
-                        <!-- ERROR DE TEXTO RESUELTO AQUÍ -->
-                        <svg width="110" height="32" viewBox="0 0 120 35" fill="none">
+                        <svg width="110" height="32" viewBox="0 0 120 35" fill="none" style="margin: 0 auto; display: block;">
                             <path d="M5,5 C15,10 20,2 35,15 C25,25 10,20 5,5 Z" fill="var(--navy-blue)" opacity="0.15"/>
                             <text x="0" y="25" font-family="'Montserrat', sans-serif" font-weight="500" font-size="16" fill="var(--navy-blue)" letter-spacing="1">Liverpool</text>
                             <line x1="0" y1="32" x2="90" y2="32" stroke="var(--gold)" stroke-width="1.5" />
@@ -883,7 +1192,7 @@
 
     <!-- SECCIÓN 7: ASISTENCIA -->
     <section>
-        <svg class="leaf-decor leaf-side-left" style="top:20%;" viewBox="0 0 120 120"><use href="#svg-leaves-maxi"/></svg>
+        <svg class="flower-decor flower-side-left" style="top:20%;" viewBox="0 0 340 360"><use href="#svg-wedding-bouquet"/></svg>
         
         <svg class="svg-icon" viewBox="0 0 64 64" fill="none" stroke="var(--terracotta)" stroke-width="2">
             <rect x="10" y="14" width="44" height="42" rx="4"/>
@@ -895,7 +1204,7 @@
             <circle cx="32" cy="46" r="2" fill="var(--navy-blue)"/>
         </svg>
         <h3 class="section-title">CONFIRMAR ASISTENCIA</h3>
-        <p class="rsvp-deadline">Agradecemos que confirmes tu asistencia antes del 27 de octubre</p>
+        <p class="rsvp-deadline" style="text-align: center;">Agradecemos que confirmes tu asistencia antes del 27 de octubre</p>
         
         <div class="rsvp-actions">
             <a href="#" class="btn-action">Contacto novia</a>
@@ -920,17 +1229,18 @@
         <p class="bible-text">"El amor nunca se da por vencido, jamás pierde la fe, siempre tiene esperanzas y se mantiene firme en toda circunstancia."</p>
         <p class="bible-reference">1 Corintios 13:7</p>
         
-        <!-- FOTO 2: INTEGRADA DESDE REPOSITORIO GITHUB CON FILTRO ARTÍSTICO VINTAGE -->
         <div class="civil-img-container">
             <img src="https://github.com/miguelpouse/adi-cesar26/blob/main/Adri&Cesar2.jpeg?raw=true" alt="Boda Civil Adriana y César">
         </div>
     </section>
 
-    <!-- FOOTER FINAL CRÉDITOS -->
+    <!-- FOOTER COMPLETAMENTE REESTRUCTURADO Y CENTRADO -->
     <footer class="main-brand-footer">
-        <svg class="leaf-decor leaf-bottom-left" style="width:110px; opacity:0.25;" viewBox="0 0 120 120"><use href="#svg-leaves-maxi"/></svg>
+        <svg class="footer-flower-decor footer-flower-left" viewBox="0 0 340 360"><use href="#svg-wedding-bouquet"/></svg>
+        <svg class="footer-flower-decor footer-flower-right" viewBox="0 0 340 360"><use href="#svg-wedding-bouquet"/></svg>
+
         <div class="footer-brand-title">Adriana & César</div>
-        <p style="color: rgba(255,255,255,0.4); font-size: 0.75rem;">Nuestra Boda — 14.11.2026</p>
+        <p class="footer-subtitle">Nuestra Boda — 14.11.2026</p>
         <div class="footer-divider"></div>
         <div class="footer-credits">
             Diseñado con ♥ por <a href="#">MZG Systems</a>
@@ -938,7 +1248,7 @@
     </footer>
 
     <script>
-        // LÓGICA DE CUENTA REGRESIVA AL 14 DE NOVIEMBRE DE 2026
+        // LÓGICA DE LA CUENTA REGRESIVA
         const weddingDate = new Date(2026, 10, 14, 16, 30, 0).getTime();
 
         const countdown = setInterval(function() {
@@ -960,6 +1270,39 @@
                 document.querySelector(".countdown-banner h3").innerText = "¡LLEGÓ EL DÍA!";
             }
         }, 1000);
+
+        // LÓGICA DEL CARRUSEL EN FADE AUTOMÁTICO E INFINITO
+        let currentIdx = 0;
+        const slides = document.getElementsByClassName('carousel-slide');
+        const dots = document.getElementsByClassName('dot');
+        const totalSlides = slides.length;
+        const slideInterval = 4000;
+
+        function showSlide(index) {
+            if (index >= totalSlides) currentIdx = 0;
+            else if (index < 0) currentIdx = totalSlides - 1;
+            else currentIdx = index;
+
+            for (let i = 0; i < totalSlides; i++) {
+                slides[i].classList.remove('active');
+                dots[i].classList.remove('active');
+            }
+
+            slides[currentIdx].classList.add('active');
+            dots[currentIdx].classList.add('active');
+        }
+
+        function setSlide(index) {
+            clearInterval(autoTimer); 
+            showSlide(index);
+            autoTimer = setInterval(nextSlide, slideInterval);
+        }
+
+        function nextSlide() {
+            showSlide(currentIdx + 1);
+        }
+
+        let autoTimer = setInterval(nextSlide, slideInterval);
     </script>
 </body>
 </html>
